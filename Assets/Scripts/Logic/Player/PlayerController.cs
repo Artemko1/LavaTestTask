@@ -9,15 +9,33 @@ namespace Logic.Player
         private NavMeshAgent _agent;
         private PlayerAnimator _playerAnimator;
         private PlayerInput _playerInput;
+        private DepositMiner _depositMiner;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _playerAnimator = GetComponent<PlayerAnimator>();
             _playerInput = GetComponent<PlayerInput>();
+            _depositMiner = GetComponent<DepositMiner>();
         }
 
         private void Update()
+        {
+            Move();
+
+            if (IsNotMoving())
+            {
+                _depositMiner.TryMine();
+            }
+        }
+
+
+        private bool IsNotMoving() =>
+            !_agent.pathPending &&
+            _agent.remainingDistance <= _agent.stoppingDistance &&
+            _agent.pathStatus == NavMeshPathStatus.PathComplete;
+
+        private void Move()
         {
             Vector3 moveDirection = new Vector3(_playerInput.Horizontal, 0f, _playerInput.Vertical).normalized;
 
