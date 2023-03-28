@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Logic.Drop;
 using UnityEngine;
 
 namespace Logic.Deposits
@@ -9,7 +10,7 @@ namespace Logic.Deposits
         [SerializeField] private GameObject _viewBase;
         [SerializeField] private Transform _dropSpawnPoint;
         [SerializeField] private List<GameObject> _viewVariants;
-        [SerializeField] private GameObject _droppedResourcePrefab;
+        [SerializeField] private DroppedLoot _droppedLootPrefab;
 
         public void PlayMining(int miningLeft)
         {
@@ -28,13 +29,13 @@ namespace Logic.Deposits
         {
             for (int i = 0; i < amount; i++)
             {
-                var instance = Instantiate(_droppedResourcePrefab, _dropSpawnPoint.position, Random.rotation)
-                    .GetComponent<Rigidbody>();
+                DroppedLoot drop = Instantiate(_droppedLootPrefab, _dropSpawnPoint.position, Random.rotation);
 
                 Vector2 randomHorizontalMagnitude = Random.insideUnitCircle * Random.Range(0.75f, 1.25f);
                 float verticalMagnitude = Random.Range(4f, 5f);
 
-                instance.AddForce(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y, ForceMode.VelocityChange);
+                var rb = drop.GetComponent<Rigidbody>();
+                rb.AddForce(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y, ForceMode.VelocityChange);
             }
         }
     }

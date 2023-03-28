@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6640001667329808728}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: View_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 5617178589994565631}
   - component: {fileID: 8316007228384657308}
   - component: {fileID: 8593666126295032856}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: DepositBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,4 +142,4 @@ MonoBehaviour:
   _viewBase: {fileID: 1742751354144085708}
   _dropSpawnPoint: {fileID: 8934810107666560302}
   _viewVariants: []
-  _droppedResourcePrefab: {fileID: 0}
+  _droppedLootPrefab: {fileID: 0}

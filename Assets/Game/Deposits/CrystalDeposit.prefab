@@ -1238,6 +1238,12 @@ PrefabInstance:
       objectReference: {fileID: 100000, guid: 0226e8aa08ca38644a9e924ae4bd6043, type: 3}
     - target: {fileID: 8593666126295032856, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
+      propertyPath: _droppedLootPrefab
+      value: 
+      objectReference: {fileID: 1267605747437596569, guid: 74f14866c8c229a4fb2edcb8891cdb51,
+        type: 3}
+    - target: {fileID: 8593666126295032856, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
       propertyPath: _droppedResourcePrefab
       value: 
       objectReference: {fileID: 2122881862777620216, guid: 74f14866c8c229a4fb2edcb8891cdb51,

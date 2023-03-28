@@ -14,7 +14,11 @@ namespace Logic
         private void OnTriggerExit(Collider other) =>
             TriggerExit?.Invoke(other);
 
+        private void OnTriggerStay(Collider other) =>
+            TriggerStay?.Invoke(other);
+
         public event Action<Collider> TriggerEnter;
         public event Action<Collider> TriggerExit;
+        public event Action<Collider> TriggerStay;
     }
 }

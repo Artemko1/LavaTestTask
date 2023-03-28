@@ -32,8 +32,6 @@ namespace Logic.Deposits
 
             _depositView.PlayMining(_remainingResource);
             _depositView.DropResources(_resourceDropPerMine);
-
-            Debug.Log($"Mined! Remaining {_remainingResource}", this);
         }
     }
 }
