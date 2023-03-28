@@ -2,18 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Logic.Player
+namespace Logic.Deposits
 {
     public class DepositMiner : MonoBehaviour
     {
         [SerializeField] private TriggerObserver _depositObserver;
 
-        [SerializeField] private float _miningCooldown = 2f;
-
         private readonly List<Deposit> _nearDeposits = new List<Deposit>();
         private float _remainingCooldown;
 
-        private void Update() => 
+        private void Update() =>
             _remainingCooldown -= Time.deltaTime;
 
         private void OnEnable()
@@ -47,21 +45,25 @@ namespace Logic.Player
         {
             if (!ReadyToMine()) return;
 
-            Deposit nearestDeposit = FindNearestDeposit();
+            Deposit nearestDeposit = FindNearestAvailableDeposit();
+            if (nearestDeposit == null) return;
+
             nearestDeposit.Mine();
-            _remainingCooldown = _miningCooldown;
+            _remainingCooldown = nearestDeposit.MiningCooldown;
         }
 
         private bool ReadyToMine() =>
             _remainingCooldown < 0 && _nearDeposits.Count > 0;
 
-        private Deposit FindNearestDeposit()
+        private Deposit FindNearestAvailableDeposit()
         {
             Deposit bestTarget = null;
             float closestDistanceSqr = Mathf.Infinity;
             Vector3 currentPosition = transform.position;
             foreach (Deposit deposit in _nearDeposits)
             {
+                if (!deposit.CanBeMined()) continue;
+
                 Vector3 directionToTarget = deposit.transform.position - currentPosition;
                 float dSqrToTarget = directionToTarget.sqrMagnitude;
 

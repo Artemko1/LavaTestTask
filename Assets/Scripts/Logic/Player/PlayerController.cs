@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Logic.Deposits;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Logic.Player
