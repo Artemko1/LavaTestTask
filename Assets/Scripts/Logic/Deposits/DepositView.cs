@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Logic.Drop;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Logic.Deposits
 {
@@ -12,14 +14,17 @@ namespace Logic.Deposits
         [SerializeField] private List<GameObject> _viewVariants;
         [SerializeField] private DroppedLoot _droppedLootPrefab;
 
+        private void Start()
+        {
+            DisableAllViews();
+            _viewVariants[^1].SetActive(true);
+        }
+
         public void PlayMining(int miningLeft)
         {
             _viewBase.transform.DOPunchScale(new Vector3(-0.3f, -0.3f, -0.3f), 0.3f, elasticity: 0.5f);
 
-            foreach (GameObject viewVariant in _viewVariants)
-            {
-                viewVariant.SetActive(false);
-            }
+            DisableAllViews();
 
             int newViewIndex = Mathf.Clamp(miningLeft, 0, _viewVariants.Count - 1);
             _viewVariants[newViewIndex].SetActive(true);
@@ -36,6 +41,14 @@ namespace Logic.Deposits
 
                 var rb = drop.GetComponent<Rigidbody>();
                 rb.AddForce(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y, ForceMode.VelocityChange);
+            }
+        }
+
+        private void DisableAllViews()
+        {
+            foreach (GameObject viewVariant in _viewVariants)
+            {
+                viewVariant.SetActive(false);
             }
         }
     }
