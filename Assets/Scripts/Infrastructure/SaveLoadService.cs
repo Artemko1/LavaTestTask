@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Data;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Infrastructure
 {
@@ -11,7 +13,33 @@ namespace Infrastructure
 
         public event Action<PlayerProgress> OnSave;
 
-        public void SaveProgress()
+        private IEnumerator Start()
+        {
+            var waitForSeconds = new WaitForSeconds(5);
+            while (true)
+            {
+                yield return waitForSeconds;
+                SaveProgress();
+            }
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus)
+            {
+                SaveProgress();
+            }
+        }
+
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus)
+            {
+                SaveProgress();
+            }
+        }
+
+        private void SaveProgress()
         {
             OnSave?.Invoke(_progressService.PlayerProgress);
 
@@ -28,7 +56,7 @@ namespace Infrastructure
 
     public static class JsonExtensions
     {
-        public static string ToJson(this object obj) => JsonUtility.ToJson(obj);
-        public static T ToDeserialized<T>(this string json) => JsonUtility.FromJson<T>(json);
+        public static string ToJson(this object obj) => JsonConvert.SerializeObject(obj);
+        public static T ToDeserialized<T>(this string json) => JsonConvert.DeserializeObject<T>(json);
     }
 }

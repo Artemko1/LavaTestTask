@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Data
 {
@@ -23,6 +24,19 @@ namespace Data
 
             Collected?.Invoke(new LootCollectedArgs(loot.Type, Loot[loot.Type]));
         }
+
+        public void Subtract(Loot loot)
+        {
+            if (!CanSubtractLoot(loot))
+            {
+                Debug.LogError("Trying to subtract more loot than available");
+                return;
+            }
+
+            Loot[loot.Type] -= loot.Amount;
+        }
+
+        private bool CanSubtractLoot(Loot loot) => Loot.ContainsKey(loot.Type) && Loot[loot.Type] >= loot.Amount;
     }
 
     public class LootCollectedArgs : EventArgs

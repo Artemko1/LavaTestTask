@@ -22,6 +22,19 @@ namespace UI
 
             _lootData = _playerProgressProvider.PlayerProgress.LootData;
             _lootData.Collected += UpdateOnCollected;
+
+            InitAllRows();
+        }
+
+        private void InitAllRows()
+        {
+            foreach (KeyValuePair<LootType, int> kvp in _lootData.Loot)
+            {
+                if (kvp.Value <= 0) return;
+
+                LootRowView lootRow = CreateLootRowView(kvp.Key);
+                lootRow.SetText(kvp.Value.ToString());
+            }
         }
 
         private void CleanupEditorObjects()
@@ -43,24 +56,22 @@ namespace UI
             }
             else
             {
-                LootRowView lootRow = CreateLootRowView(args);
+                LootRowView lootRow = CreateLootRowView(args.Type);
 
                 lootRow.SetText(args.TotalAmount.ToString());
                 lootRow.PlayIncreaseAnimation();
             }
         }
 
-        private LootRowView CreateLootRowView(LootCollectedArgs args)
+        private LootRowView CreateLootRowView(LootType lootType)
         {
             LootRowView newRow = Instantiate(_lootRowViewPrefab, _lootRowViewParent);
-            newRow.SetSprite(GetSpriteForLootType(args.Type));
-            _lootRowsForTypes[args.Type] = newRow;
+            newRow.SetSprite(GetSpriteForLootType(lootType));
+            _lootRowsForTypes[lootType] = newRow;
             return newRow;
         }
 
-        private Sprite GetSpriteForLootType(LootType lootType)
-        {
-            return _lootSpritesByType.GetForType(lootType);
-        }
+        private Sprite GetSpriteForLootType(LootType lootType) =>
+            _lootSpritesByType.GetForType(lootType);
     }
 }
