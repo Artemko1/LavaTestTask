@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Logic.Deposits
 {
@@ -6,16 +7,35 @@ namespace Logic.Deposits
     {
         [SerializeField] private DepositView _depositView;
 
-        [SerializeField] private int _remainingResource = 3;
+        [SerializeField] private int _maxResource = 3;
+
+        private int _remainingResource;
 
         [SerializeField] private float _miningCooldown = 2f;
 
         [SerializeField] private int _resourceDropPerMine = 1;
 
+        [SerializeField] private float _restorationTime = 5;
+
+        private float _remainingRestorationTime;
+
 
         public float MiningCooldown => _miningCooldown;
 
         private bool IsMinedOut => _remainingResource <= 0;
+
+        private void Awake()
+        {
+            ResetRestorationTimer();
+            _remainingResource = _maxResource;
+        }
+
+        private void Update()
+        {
+            if (IsFull()) return;
+
+            TickRestoration();
+        }
 
         public bool CanBeMined() =>
             !IsMinedOut;
@@ -29,9 +49,30 @@ namespace Logic.Deposits
             }
 
             _remainingResource--;
+            _depositView.ChangeView(_remainingResource);
 
-            _depositView.PlayMining(_remainingResource);
+            _depositView.PlayMiningAnimation();
             _depositView.DropResources(_resourceDropPerMine);
+
+            ResetRestorationTimer();
+        }
+
+        private void ResetRestorationTimer() =>
+            _remainingRestorationTime = _restorationTime;
+
+        private bool IsFull() =>
+            _remainingResource >= _maxResource;
+
+        private void TickRestoration()
+        {
+            _remainingRestorationTime -= Time.deltaTime;
+            if (_remainingRestorationTime > 0) return;
+
+            Assert.AreNotEqual(_remainingResource, _maxResource);
+            
+            _remainingResource++;
+            _depositView.ChangeView(_remainingResource);
+            ResetRestorationTimer();
         }
     }
 }

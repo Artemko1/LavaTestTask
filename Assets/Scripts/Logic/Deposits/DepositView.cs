@@ -20,10 +20,11 @@ namespace Logic.Deposits
             _viewVariants[^1].SetActive(true);
         }
 
-        public void PlayMining(int miningLeft)
-        {
+        public void PlayMiningAnimation() => 
             _viewBase.transform.DOPunchScale(new Vector3(-0.3f, -0.3f, -0.3f), 0.3f, elasticity: 0.5f);
 
+        public void ChangeView(int miningLeft)
+        {
             DisableAllViews();
 
             int newViewIndex = Mathf.Clamp(miningLeft, 0, _viewVariants.Count - 1);

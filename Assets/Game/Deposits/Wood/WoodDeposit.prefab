@@ -344,6 +344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodDeposit
       objectReference: {fileID: 0}
+    - target: {fileID: 5648697378742929974, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6640001667329808728, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
       propertyPath: m_RootOrder
@@ -418,6 +423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
+      propertyPath: _maxResource
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
