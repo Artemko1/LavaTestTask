@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Data;
+using Data.DataLoot;
 using UnityEngine;
 
 namespace UI
@@ -22,18 +23,19 @@ namespace UI
 
             _lootData = _playerProgressProvider.PlayerProgress.LootData;
             _lootData.Collected += UpdateOnCollected;
+            _lootData.Subtracted += UpdateOnSubtracted;
 
             InitAllRows();
         }
 
         private void InitAllRows()
         {
-            foreach (KeyValuePair<LootType, int> kvp in _lootData.Loot)
+            foreach (Loot lootValue in _lootData.GetAllLoot())
             {
-                if (kvp.Value <= 0) return;
+                if (lootValue.Amount <= 0) return;
 
-                LootRowView lootRow = CreateLootRowView(kvp.Key);
-                lootRow.SetText(kvp.Value.ToString());
+                LootRowView lootRow = CreateLootRowView(lootValue.Type);
+                lootRow.SetText(lootValue.Amount.ToString());
             }
         }
 
@@ -45,7 +47,7 @@ namespace UI
             }
         }
 
-        private void UpdateOnCollected(LootCollectedArgs args)
+        private void UpdateOnCollected(LootUpdatedArgs args)
         {
             if (_lootRowsForTypes.ContainsKey(args.Type))
             {
@@ -61,6 +63,17 @@ namespace UI
                 lootRow.SetText(args.TotalAmount.ToString());
                 lootRow.PlayIncreaseAnimation();
             }
+        }
+
+        private void UpdateOnSubtracted(LootUpdatedArgs args)
+        {
+            LootRowView lootRow = _lootRowsForTypes[args.Type];
+            if (args.TotalAmount <= 0)
+            {
+                lootRow.gameObject.SetActive(false);
+            }
+
+            lootRow.SetText(args.TotalAmount.ToString());
         }
 
         private LootRowView CreateLootRowView(LootType lootType)

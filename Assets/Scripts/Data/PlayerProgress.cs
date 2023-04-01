@@ -1,4 +1,5 @@
 using System;
+using Data.DataLoot;
 
 namespace Data
 {

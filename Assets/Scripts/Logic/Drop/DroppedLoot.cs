@@ -1,5 +1,6 @@
 using System.Collections;
 using Data;
+using Data.DataLoot;
 using DG.Tweening;
 using UnityEngine;
 
@@ -31,7 +32,6 @@ namespace Logic.Drop
             }
 
             _collected = true;
-
 
             DOTween.Sequence()
                 .Append(transform.DOJump(collectorPosition, 0.5f, 1, 0.35f))

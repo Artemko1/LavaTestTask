@@ -1,4 +1,5 @@
 ﻿using Logic.Deposits;
+using Logic.Spots;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +9,8 @@ namespace Logic.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private DepositMiner _depositMiner;
+        [SerializeField] private SpotInterractor _spotInterractor;
+
         private NavMeshAgent _agent;
         private PlayerAnimator _playerAnimator;
         private PlayerInput _playerInput;
@@ -22,11 +25,10 @@ namespace Logic.Player
         private void Update()
         {
             ProcessMove();
+            if (!IsNotMoving()) return;
 
-            if (IsNotMoving())
-            {
-                _depositMiner.TryMine();
-            }
+            _depositMiner.TryMine();
+            _spotInterractor.TryGiveLootToSpot();
         }
 
 
