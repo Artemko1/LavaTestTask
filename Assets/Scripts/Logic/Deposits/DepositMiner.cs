@@ -6,36 +6,20 @@ namespace Logic.Deposits
 {
     public class DepositMiner : MonoBehaviour
     {
-        [SerializeField] private TriggerObserver _depositObserver;
-
         private readonly List<Deposit> _nearDeposits = new List<Deposit>();
         private float _remainingCooldown;
 
         private void Update() =>
             _remainingCooldown -= Time.deltaTime;
 
-        private void OnEnable()
-        {
-            _depositObserver.TriggerEnter += DepositTriggerEnter;
-            _depositObserver.TriggerExit += DepositTriggerExit;
-        }
-
-        private void OnDisable()
-        {
-            _depositObserver.TriggerEnter -= DepositTriggerEnter;
-            _depositObserver.TriggerExit -= DepositTriggerExit;
-
-            _nearDeposits.Clear();
-        }
-
-        private void DepositTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             var deposit = other.GetComponent<Deposit>();
             Assert.IsNotNull(deposit);
             _nearDeposits.Add(deposit);
         }
 
-        private void DepositTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             var deposit = other.GetComponent<Deposit>();
             _nearDeposits.Remove(deposit);

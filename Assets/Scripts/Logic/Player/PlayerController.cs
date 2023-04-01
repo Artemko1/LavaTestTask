@@ -7,22 +7,21 @@ namespace Logic.Player
     [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(PlayerAnimator)), RequireComponent(typeof(PlayerInput))]
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private DepositMiner _depositMiner;
         private NavMeshAgent _agent;
         private PlayerAnimator _playerAnimator;
         private PlayerInput _playerInput;
-        private DepositMiner _depositMiner;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _playerAnimator = GetComponent<PlayerAnimator>();
             _playerInput = GetComponent<PlayerInput>();
-            _depositMiner = GetComponent<DepositMiner>();
         }
 
         private void Update()
         {
-            Move();
+            ProcessMove();
 
             if (IsNotMoving())
             {
@@ -36,7 +35,7 @@ namespace Logic.Player
             _agent.remainingDistance <= _agent.stoppingDistance &&
             _agent.pathStatus == NavMeshPathStatus.PathComplete;
 
-        private void Move()
+        private void ProcessMove()
         {
             Vector3 moveDirection = new Vector3(_playerInput.Horizontal, 0f, _playerInput.Vertical).normalized;
 

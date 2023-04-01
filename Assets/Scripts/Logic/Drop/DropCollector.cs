@@ -2,28 +2,15 @@ using UnityEngine;
 
 namespace Logic.Drop
 {
+    [RequireComponent(typeof(Collider))]
     public class DropCollector : MonoBehaviour
     {
-        [SerializeField] private TriggerObserver _dropObserver;
-
         [SerializeField] private Transform _collectorMagnetTransform;
 
-        private void OnEnable()
-        {
-            _dropObserver.TriggerEnter += DropObserverOnTriggerEnter;
-            _dropObserver.TriggerStay += DropObserverOnTriggerStay;
-        }
-
-        private void OnDisable()
-        {
-            _dropObserver.TriggerEnter -= DropObserverOnTriggerEnter;
-            _dropObserver.TriggerStay -= DropObserverOnTriggerStay;
-        }
-
-        private void DropObserverOnTriggerEnter(Collider other) =>
+        private void OnTriggerEnter(Collider other) =>
             TryCollect(other);
 
-        private void DropObserverOnTriggerStay(Collider other) =>
+        private void OnTriggerStay(Collider other) =>
             TryCollect(other);
 
         private void TryCollect(Component other)

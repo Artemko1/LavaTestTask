@@ -1,17 +1,24 @@
-using System;
 using System.Collections;
+using System.IO;
 using Data;
-using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Infrastructure
 {
     public class SaveLoadService : MonoBehaviour
     {
-        private const string ProgressKey = "Progress";
         [SerializeField] private PlayerProgressProvider _progressService;
 
-        public event Action<PlayerProgress> OnSave;
+        private string _saveJsonFilePath;
+        private string _persistentFolder;
+
+        private void Awake()
+        {
+            _persistentFolder = Application.persistentDataPath + "/";
+            _saveJsonFilePath = _persistentFolder + "Save.json";
+        }
 
         private IEnumerator Start()
         {
@@ -39,18 +46,31 @@ namespace Infrastructure
             }
         }
 
+
         private void SaveProgress()
         {
-            OnSave?.Invoke(_progressService.PlayerProgress);
+            Directory.CreateDirectory(_persistentFolder);
 
             string progressJson = _progressService.PlayerProgress.ToJson();
-            PlayerPrefs.SetString(ProgressKey, progressJson);
+
+            File.WriteAllText(_saveJsonFilePath, progressJson);
         }
 
         public void LoadProgress()
         {
-            string progressJson = PlayerPrefs.GetString(ProgressKey); //todo move from prefs to file save
-            _progressService.PlayerProgress = progressJson?.ToDeserialized<PlayerProgress>() ?? new PlayerProgress();
+            PlayerProgress loadedProgress;
+            if (File.Exists(_saveJsonFilePath))
+            {
+                string json = File.ReadAllText(_saveJsonFilePath);
+                loadedProgress = json.ToDeserialized<PlayerProgress>();
+                Assert.IsNotNull(loadedProgress);
+            }
+            else
+            {
+                loadedProgress = new PlayerProgress();
+            }
+
+            _progressService.PlayerProgress = loadedProgress;
         }
     }
 
