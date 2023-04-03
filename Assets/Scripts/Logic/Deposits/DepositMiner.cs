@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Logic.Player;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -6,11 +7,20 @@ namespace Logic.Deposits
 {
     public class DepositMiner : MonoBehaviour
     {
+        [SerializeField] private CharacterMovement _characterMovement;
+
         private readonly List<Deposit> _nearDeposits = new List<Deposit>();
         private float _remainingCooldown;
 
-        private void Update() =>
+        private void Update()
+        {
             _remainingCooldown -= Time.deltaTime;
+
+            if (ReadyToMine())
+            {
+                TryMine();
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -25,10 +35,8 @@ namespace Logic.Deposits
             _nearDeposits.Remove(deposit);
         }
 
-        public void TryMine()
+        private void TryMine()
         {
-            if (!ReadyToMine()) return;
-
             Deposit nearestDeposit = FindNearestAvailableDeposit();
             if (nearestDeposit == null) return;
 
@@ -37,7 +45,7 @@ namespace Logic.Deposits
         }
 
         private bool ReadyToMine() =>
-            _remainingCooldown < 0 && _nearDeposits.Count > 0;
+            _characterMovement.IsMoving == false && _remainingCooldown < 0 && _nearDeposits.Count > 0;
 
         private Deposit FindNearestAvailableDeposit()
         {

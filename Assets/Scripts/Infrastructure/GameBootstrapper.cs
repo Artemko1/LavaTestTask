@@ -1,5 +1,4 @@
-﻿using Data;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Infrastructure
@@ -14,7 +13,7 @@ namespace Infrastructure
         private SaveLoadService _saveLoadService;
         private SceneLoader _sceneLoader;
 
-        public void Awake()
+        public void Start()
         {
             if (_instance != null)
             {

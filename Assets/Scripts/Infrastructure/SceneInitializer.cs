@@ -10,7 +10,7 @@ namespace Infrastructure
         [SerializeField] private GameObject _heroPrefab;
         [SerializeField] private CinemachineVirtualCamera _playerFollowVirtualCameraPrefab;
 
-        public void Awake() =>
+        public void Start() =>
             InitGameWorld();
 
         private void InitGameWorld()

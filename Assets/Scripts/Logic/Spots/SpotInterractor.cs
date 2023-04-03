@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Data;
 using Data.DataLoot;
+using Logic.Player;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -13,6 +14,7 @@ namespace Logic.Spots
 
         [SerializeField] private PlayerProgressProvider _playerProgressProvider;
 
+        [SerializeField] private CharacterMovement _characterMovement;
 
         [SerializeField] private float _interactionCooldown = 5;
         private float _remainingCooldown;
@@ -21,8 +23,14 @@ namespace Logic.Spots
         private void Start() =>
             _lootData = _playerProgressProvider.PlayerProgress.LootData;
 
-        private void Update() =>
+        private void Update()
+        {
             _remainingCooldown -= Time.deltaTime;
+            if (Ready())
+            {
+                TryGiveLootToSpot();
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -37,10 +45,8 @@ namespace Logic.Spots
             _nearSpots.Remove(spot);
         }
 
-        public void TryGiveLootToSpot()
+        private void TryGiveLootToSpot()
         {
-            if (!Ready()) return;
-
             Spot spot = _nearSpots[0];
 
             Loot loot = _lootData.TrySubtract(spot.RemainingRequiredLoot.Type, spot.RemainingRequiredLoot.Amount);
@@ -52,6 +58,6 @@ namespace Logic.Spots
         }
 
         private bool Ready() =>
-            _remainingCooldown < 0 && _nearSpots.Count > 0;
+            _characterMovement.IsMoving == false && _remainingCooldown < 0 && _nearSpots.Count > 0;
     }
 }

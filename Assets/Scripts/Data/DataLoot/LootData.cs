@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Data.DataLoot
 {
     [Serializable]
     public class LootData
     {
-        private Dictionary<LootType, Loot> _loot = new Dictionary<LootType, Loot>();
+        [JsonProperty] private Dictionary<LootType, Loot> _loot = new Dictionary<LootType, Loot>();
 
         public event Action<LootUpdatedArgs> Collected;
         public event Action<LootUpdatedArgs> Subtracted;
