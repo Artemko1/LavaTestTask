@@ -3,8 +3,11 @@ namespace Data.DataLoot
     public enum LootType
     {
         None = 0,
-        Crystal = 1,
+        TopazCrystal = 1,
         Wood = 2,
-        Metal = 3,
+        SapphireCrystal = 3,
+        CutTopazCrystal = 4,
+        ChoppedWood = 5,
+        CutSapphireCrystal = 6,
     }
 }

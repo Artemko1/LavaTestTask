@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: LootSpritesByType
   m_EditorClassIdentifier: 
   _lootSprites:
-    m_keys: 00000000010000000200000003000000
+    m_keys: 00000000010000000200000003000000040000000500000006000000
     m_values:
     - {fileID: 0}
-    - {fileID: 21300000, guid: ff4e2a40a0a91494a873149252b1aaaf, type: 3}
+    - {fileID: 21300000, guid: b6da46610f2e67c47ab4f5011422203a, type: 3}
     - {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
     - {fileID: 21300000, guid: 7c317a7b1aef9e64e9ca3d82d64f843c, type: 3}
+    - {fileID: 21300000, guid: ff4e2a40a0a91494a873149252b1aaaf, type: 3}
+    - {fileID: 21300000, guid: f8a9cfc721a20ce409c3d743e9b251bc, type: 3}
+    - {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
