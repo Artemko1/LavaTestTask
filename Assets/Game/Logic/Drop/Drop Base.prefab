@@ -91,6 +91,3 @@ MonoBehaviour:
   _playerProgressProvider: {fileID: 11400000, guid: d8e8ead5e55b8f3459c8215069a00be5,
     type: 2}
   _delayBeforeCollection: 1
-  _loot:
-    Type: 0
-    Amount: 1

@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalRequiredLoot:
-    Type: 3
-    Amount: 7
+    _type: 0
+    _amount: 7
+  _lootAcceptancePoint: {fileID: 8934810107666560302}

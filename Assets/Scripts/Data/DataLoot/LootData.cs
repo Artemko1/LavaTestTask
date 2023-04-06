@@ -26,7 +26,7 @@ namespace Data.DataLoot
             Collected?.Invoke(new LootUpdatedArgs(loot.Type, _loot[loot.Type].Amount));
         }
 
-        public Loot TrySubtract(LootType type, int desiredAmount)
+        public Loot TrySubtract(LootType type, int desiredAmount) // todo make one param Loot
         {
             if (!_loot.ContainsKey(type))
             {
@@ -40,7 +40,7 @@ namespace Data.DataLoot
         }
 
         // public bool HasDesiredLoot(LootType type, int amount) =>
-            // _loot.ContainsKey(type) && _loot[type].Amount >= amount;
+            // _loot.ContainsKey(type) && _loot[type]._amount >= amount;
 
         public IEnumerable<Loot> GetAllLoot() => _loot.Values;
     }

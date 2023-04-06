@@ -8,10 +8,14 @@ namespace Logic.Spots
     {
         [SerializeField] private Loot _totalRequiredLoot;
 
+        [SerializeField] private Transform _lootAcceptancePoint;
+
         public Loot RemainingRequiredLoot { get; private set; }
 
         private void Awake()
         {
+            Assert.IsFalse(_totalRequiredLoot.Type == LootType.None);
+            Assert.IsFalse(_totalRequiredLoot.Amount <= 0);
             RemainingRequiredLoot = _totalRequiredLoot;
         }
 

@@ -474,7 +474,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7833601236303124509}
   m_Father: {fileID: 3893294197879345259}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -506,7 +507,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerProgressProvider: {fileID: 11400000, guid: d8e8ead5e55b8f3459c8215069a00be5,
     type: 2}
+  _lootDropPrefabsByType: {fileID: 11400000, guid: a2a1c75e514c3b04985873c7aba7354d,
+    type: 2}
   _characterMovement: {fileID: 4416926081852918490}
+  _dropTransitionSpawnPoint: {fileID: 7833601236303124509}
   _interactionCooldown: 5
 --- !u!1 &2123444703563792953
 GameObject:
@@ -1192,7 +1196,7 @@ GameObject:
   - component: {fileID: 4416926081852918490}
   - component: {fileID: 6881087476786584480}
   m_Layer: 10
-  m_Name: PlayerArmature
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,6 +2490,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6044159111065775861}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8347649318046213253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7833601236303124509}
+  m_Layer: 18
+  m_Name: DropTransitionSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7833601236303124509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347649318046213253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1816185640445328288}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8832014917856829317
 GameObject:

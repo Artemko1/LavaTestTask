@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Data.DataLoot
@@ -7,13 +8,24 @@ namespace Data.DataLoot
     [Serializable]
     public class Loot
     {
-        public LootType Type;
-        public int Amount;
+        [SerializeField, JsonProperty]
+        private LootType _type;
+
+        [SerializeField, JsonProperty]
+        private int _amount;
 
         public Loot(LootType type, int amount)
         {
-            Type = type;
+            _type = type;
             Amount = amount;
+        }
+
+        public LootType Type => _type;
+
+        public int Amount
+        {
+            get => _amount;
+            set => _amount = value;
         }
 
         public static Loot operator +(Loot a, Loot b)

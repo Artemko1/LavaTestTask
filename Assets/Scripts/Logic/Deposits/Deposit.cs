@@ -1,3 +1,4 @@
+using Data.DataLoot;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -9,13 +10,13 @@ namespace Logic.Deposits
 
         [SerializeField] private int _maxResource = 3;
 
-        private int _remainingResource;
+        [SerializeField] private Loot _lootDropPerMine;
 
         [SerializeField] private float _miningCooldown = 2f;
 
-        [SerializeField] private int _resourceDropPerMine = 1;
-
         [SerializeField] private float _restorationTime = 5;
+
+        private int _remainingResource;
 
         private float _remainingRestorationTime;
 
@@ -52,7 +53,7 @@ namespace Logic.Deposits
             _depositView.ChangeView(_remainingResource);
 
             _depositView.PlayMiningAnimation();
-            _depositView.DropResources(_resourceDropPerMine);
+            _depositView.DropLoot(_lootDropPerMine);
 
             ResetRestorationTimer();
         }
@@ -69,7 +70,7 @@ namespace Logic.Deposits
             if (_remainingRestorationTime > 0) return;
 
             Assert.AreNotEqual(_remainingResource, _maxResource);
-            
+
             _remainingResource++;
             _depositView.ChangeView(_remainingResource);
             ResetRestorationTimer();

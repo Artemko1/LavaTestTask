@@ -100,6 +100,11 @@ PrefabInstance:
       propertyPath: _totalRequiredLoot.Amount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
+        type: 3}
+      propertyPath: _totalRequiredLoot._amount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5648697378742929974, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
         type: 3}
       propertyPath: m_Name

@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 5648697378742929974, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
       propertyPath: m_Name
-      value: MetalDeposit
+      value: SapphireDeposit
       objectReference: {fileID: 0}
     - target: {fileID: 6640001667329808728, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
@@ -459,9 +459,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
+      propertyPath: _lootDropPerMine.Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
       propertyPath: _droppedResourcePrefab
       value: 
       objectReference: {fileID: 100000, guid: 0226e8aa08ca38644a9e924ae4bd6043, type: 3}
+    - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
+      propertyPath: _lootDropPerMine.Amount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
+      propertyPath: _lootDropPerMine._amount
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8593666126295032856, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
       propertyPath: _droppedLootPrefab
