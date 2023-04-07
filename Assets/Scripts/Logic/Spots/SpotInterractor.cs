@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Data;
 using Data.DataLoot;
@@ -13,8 +12,6 @@ namespace Logic.Spots
     [RequireComponent(typeof(Collider))]
     public class SpotInterractor : MonoBehaviour
     {
-        private readonly List<Spot> _nearSpots = new List<Spot>();
-
         [SerializeField] private PlayerProgressProvider _playerProgressProvider;
         [SerializeField] private LootDropPrefabsByType _lootDropPrefabsByType;
 
@@ -23,10 +20,11 @@ namespace Logic.Spots
         [SerializeField] private Transform _dropTransitionSpawnPoint;
 
         [SerializeField] private float _interactionCooldown = 1;
+        private readonly List<Spot> _nearSpots = new List<Spot>();
+        private LootData _lootData;
 
         private float _remainingCooldown;
         private int _transfersInProgressCount;
-        private LootData _lootData;
 
         private void Start() =>
             _lootData = _playerProgressProvider.PlayerProgress.LootData;
@@ -70,14 +68,14 @@ namespace Logic.Spots
 
 
             AnimateOneLootDrop(loot, spot);
-            
+
             _remainingCooldown = _interactionCooldown;
         }
 
         private void AnimateOneLootDrop(Loot loot, Spot spot)
         {
             _transfersInProgressCount++;
-            
+
             DroppedLoot droppedLootPrefab = _lootDropPrefabsByType.GetForType(loot.Type);
 
             DroppedLoot drop = Instantiate(droppedLootPrefab, _dropTransitionSpawnPoint.position, Random.rotation);

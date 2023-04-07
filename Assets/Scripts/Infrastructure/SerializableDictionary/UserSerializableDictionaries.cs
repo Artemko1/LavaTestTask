@@ -1,5 +1,4 @@
 ﻿using System;
-using Data;
 using Data.DataLoot;
 using Logic.Drop;
 using UnityEngine;
@@ -15,6 +14,7 @@ namespace Infrastructure.SerializableDictionary
     public class LootTypeSpriteDictionary : SerializableDictionary<LootType, Sprite>
     {
     }
+
     [Serializable]
     public class LootTypeDroppedLootDictionary : SerializableDictionary<LootType, DroppedLoot>
     {

@@ -3,7 +3,6 @@ using Data.DataLoot;
 using DG.Tweening;
 using Logic.Drop;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Logic.Deposits
 {
@@ -20,7 +19,7 @@ namespace Logic.Deposits
             _viewVariants[^1].SetActive(true);
         }
 
-        public void PlayMiningAnimation() => 
+        public void PlayMiningAnimation() =>
             _viewBase.transform.DOPunchScale(new Vector3(-0.3f, -0.3f, -0.3f), 0.3f, elasticity: 0.5f);
 
         public void ChangeView(int miningLeft)

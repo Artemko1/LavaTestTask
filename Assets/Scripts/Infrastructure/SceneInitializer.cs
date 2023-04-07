@@ -25,7 +25,7 @@ namespace Infrastructure
             virtualCamera.Follow = hero.transform;
         }
 
-        private GameObject CreateHero() => 
+        private GameObject CreateHero() =>
             Instantiate(_heroPrefab, _playerSpawnPoint.position, Quaternion.identity);
     }
 }

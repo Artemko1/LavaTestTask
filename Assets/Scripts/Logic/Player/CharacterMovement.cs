@@ -9,7 +9,7 @@ namespace Logic.Player
         private NavMeshAgent _agent;
         private PlayerAnimator _playerAnimator;
         private PlayerInput _playerInput;
-        
+
         public bool IsMoving { get; private set; }
 
         private void Awake()
@@ -19,7 +19,7 @@ namespace Logic.Player
             _playerInput = GetComponent<PlayerInput>();
         }
 
-        private void Update() => 
+        private void Update() =>
             ProcessMove();
 
         private void ProcessMove()

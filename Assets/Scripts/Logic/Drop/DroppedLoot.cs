@@ -14,13 +14,23 @@ namespace Logic.Drop
         [SerializeField] private float _delayBeforeCollection = 1f;
 
         [SerializeField] private ConstantForce _constantForce;
-
-        private Loot _loot;
         private bool _becomeCollectableOverTime;
 
         private bool _isCollected;
 
+        private Loot _loot;
+
         public bool CanBeCollected { get; private set; }
+
+        private IEnumerator Start()
+        {
+            Assert.IsNotNull(_loot);
+
+            if (!_becomeCollectableOverTime) yield break;
+
+            yield return new WaitForSeconds(_delayBeforeCollection);
+            CanBeCollected = true;
+        }
 
         public void Init(Loot loot, bool isCollectableDrop)
         {
@@ -37,16 +47,6 @@ namespace Logic.Drop
                 _becomeCollectableOverTime = false;
                 _constantForce.enabled = false;
             }
-        }
-
-        private IEnumerator Start()
-        {
-            Assert.IsNotNull(_loot);
-
-            if (!_becomeCollectableOverTime) yield break;
-
-            yield return new WaitForSeconds(_delayBeforeCollection);
-            CanBeCollected = true;
         }
 
         public void Collect(Vector3 collectorPosition)

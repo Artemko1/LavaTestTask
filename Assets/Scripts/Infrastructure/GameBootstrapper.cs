@@ -36,10 +36,7 @@ namespace Infrastructure
         private static void SetTargetFramerate() =>
             Application.targetFrameRate = 60;
 
-        private void InitializeServices()
-        {
-            DOTween.Init();
-        }
+        private void InitializeServices() => DOTween.Init();
 
         private void LoadProgress() =>
             _saveLoadService.LoadProgress();

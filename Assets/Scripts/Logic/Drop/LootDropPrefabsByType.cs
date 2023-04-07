@@ -9,7 +9,7 @@ namespace Logic.Drop
     {
         [SerializeField] private LootTypeDroppedLootDictionary _lootPrefabs;
 
-        public DroppedLoot GetForType(LootType lootType) => 
+        public DroppedLoot GetForType(LootType lootType) =>
             _lootPrefabs[lootType];
     }
 }

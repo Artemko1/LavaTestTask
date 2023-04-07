@@ -18,7 +18,7 @@ namespace UI
         public void PlayIncreaseAnimation()
         {
             transform.DOComplete();
-            transform.DOPunchScale(_scalePunchStrength, 0.3f, 0, elasticity: 0.0f);
+            transform.DOPunchScale(_scalePunchStrength, 0.3f, 0, 0.0f);
         }
 
         public void SetSprite(Sprite sprite) =>

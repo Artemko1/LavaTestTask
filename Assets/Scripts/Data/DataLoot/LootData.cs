@@ -28,16 +28,16 @@ namespace Data.DataLoot
 
         public Loot TrySubtractOne(LootType type)
             => TrySubtract(type, 1);
-        
+
         public Loot TrySubtract(LootType type, int desiredAmount) // todo make one param Loot
         {
             if (!_loot.ContainsKey(type))
             {
                 return null;
             }
-            
+
             Loot loot = _loot[type].PickOutUpToX(desiredAmount);
-            
+
             Subtracted?.Invoke(new LootUpdatedArgs(loot.Type, _loot[loot.Type].Amount));
             return loot;
         }

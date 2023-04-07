@@ -9,7 +9,7 @@ namespace UI
     {
         [SerializeField] private LootTypeSpriteDictionary _lootSprites;
 
-        public Sprite GetForType(LootType lootType) => 
+        public Sprite GetForType(LootType lootType) =>
             _lootSprites[lootType];
     }
 }

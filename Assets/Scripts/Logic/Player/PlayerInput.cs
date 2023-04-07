@@ -6,7 +6,7 @@ namespace Logic.Player
     {
         private const string HorizontalKey = "Horizontal";
         private const string VerticalKey = "Vertical";
-    
+
         public float Horizontal => SimpleInput.GetAxis(HorizontalKey);
         public float Vertical => SimpleInput.GetAxis(VerticalKey);
     }
