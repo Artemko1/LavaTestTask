@@ -12,7 +12,9 @@ namespace Logic.Drop
         [SerializeField] private PlayerProgressProvider _playerProgressProvider;
 
         [SerializeField] private float _delayBeforeCollection = 1f;
-        
+
+        [SerializeField] private ConstantForce _constantForce;
+
         private Loot _loot;
         private bool _becomeCollectableOverTime;
 
@@ -20,11 +22,21 @@ namespace Logic.Drop
 
         public bool CanBeCollected { get; private set; }
 
-        public void Init(Loot loot, bool becomeCollectable)
+        public void Init(Loot loot, bool isCollectableDrop)
         {
             Assert.IsNull(_loot);
             _loot = loot;
-            _becomeCollectableOverTime = becomeCollectable;
+
+            if (isCollectableDrop)
+            {
+                _becomeCollectableOverTime = true;
+                _constantForce.enabled = true;
+            }
+            else
+            {
+                _becomeCollectableOverTime = false;
+                _constantForce.enabled = false;
+            }
         }
 
         private IEnumerator Start()
@@ -47,13 +59,11 @@ namespace Logic.Drop
             DOTween.Sequence()
                 .Append(transform.DOJump(collectorPosition, 0.5f, 1, 0.35f))
                 .Join(transform.DOScale(0.1f, 0.35f))
-                .OnComplete(OnSequenceComplete)
+                .OnComplete(OnCollectComplete)
                 .SetEase(Ease.Linear);
         }
 
-        
-
-        private void OnSequenceComplete()
+        private void OnCollectComplete()
         {
             _playerProgressProvider.PlayerProgress.LootData.Collect(_loot);
             Destroy(gameObject);

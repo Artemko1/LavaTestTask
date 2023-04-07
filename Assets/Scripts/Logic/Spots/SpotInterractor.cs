@@ -22,9 +22,10 @@ namespace Logic.Spots
 
         [SerializeField] private Transform _dropTransitionSpawnPoint;
 
-        [SerializeField] private float _interactionCooldown = 5;
+        [SerializeField] private float _interactionCooldown = 1;
 
         private float _remainingCooldown;
+        private int _transfersInProgressCount;
         private LootData _lootData;
 
         private void Start() =>
@@ -59,59 +60,44 @@ namespace Logic.Spots
         {
             Spot spot = _nearSpots[0];
 
-            Loot loot = _lootData.TrySubtract(spot.RemainingRequiredLoot.Type, spot.RemainingRequiredLoot.Amount);
+            // if (spot.RemainingRequiredLoot.Amount <= 0) return;
+            Assert.IsTrue(_transfersInProgressCount >= 0);
+            if (spot.RemainingRequiredLoot.Amount <= _transfersInProgressCount) return;
+
+            Loot loot = _lootData.TrySubtractOne(spot.RemainingRequiredLoot.Type);
 
             if (loot == null || loot.Amount == 0) return;
 
-            StartCoroutine(AnimateLootTransition(loot, spot));
-            // spot.Collect(loot);
+
+            AnimateOneLootDrop(loot, spot);
+            
             _remainingCooldown = _interactionCooldown;
         }
 
-        private IEnumerator AnimateLootTransition(Loot loot, Spot spot)
+        private void AnimateOneLootDrop(Loot loot, Spot spot)
         {
+            _transfersInProgressCount++;
+            
             DroppedLoot droppedLootPrefab = _lootDropPrefabsByType.GetForType(loot.Type);
 
-            Debug.Log("Loot amount " + loot.Amount);
+            DroppedLoot drop = Instantiate(droppedLootPrefab, _dropTransitionSpawnPoint.position, Random.rotation);
+            var lootPerDrop = new Loot(loot.Type);
+            drop.Init(lootPerDrop, false);
 
-            for (var i = 0; i < loot.Amount; i++)
-            {
-                Debug.Log("Inside loop " + i);
-                DroppedLoot drop = Instantiate(droppedLootPrefab, _dropTransitionSpawnPoint.position, Random.rotation);
-                var lootPerDrop = new Loot(loot.Type, 1);
-                drop.Init(lootPerDrop, false);
+            Vector2 randomHorizontalMagnitude = Random.insideUnitCircle * Random.Range(0.1f, 0.9f);
+            Vector3 endMove = drop.transform.position + new Vector3(randomHorizontalMagnitude.x, 1, randomHorizontalMagnitude.y);
 
-
-                Vector3[] path =
+            DOTween.Sequence()
+                .Append(drop.transform.DOMove(endMove, 0.3f))
+                .Append(drop.transform.DOJump(spot.LootAcceptancePoint, 1.5f, 1, 0.3f))
+                .Join(drop.transform.DOScale(0.5f, 0.3f))
+                .OnComplete(() =>
                 {
-                    drop.transform.position + new Vector3(0, 2, 0),
-                    spot.transform.position,
-                };
-
-                DOTween.Sequence()
-                    // .Append(transform.DOJump(transferToPoint, 0.5f, 1, 0.35f))
-                    .Append(drop.transform.DOPath(path, 2.5f, PathType.CatmullRom, gizmoColor: Color.magenta))
-                    // .Join(drop.transform.DOScale(0.8f, 0.35f)) // fix
-                    .OnComplete(() =>
-                    {
-                        spot.Collect(lootPerDrop); // инкапсулировать
-                        Destroy(drop.gameObject);
-                    })
-                    .SetEase(Ease.Linear);
-
-
-                // Vector2 randomHorizontalMagnitude = Random.insideUnitCircle * Random.Range(0.75f, 1.25f);
-                // float verticalMagnitude = Random.Range(4f, 5f);
-                //
-                // var rb = drop.GetComponent<Rigidbody>();
-                // rb.AddForce(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y, ForceMode.VelocityChange);
-
-                // yield return waitForSeconds;
-                yield return new WaitForSeconds(0.5f);
-                Debug.Log("End of loop " + i);
-            }
-
-            Debug.Log("End of function");
+                    spot.Collect(lootPerDrop);
+                    Destroy(drop.gameObject);
+                    _transfersInProgressCount--;
+                })
+                .SetEase(Ease.Linear);
         }
     }
 }

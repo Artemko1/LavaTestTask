@@ -14,10 +14,17 @@ namespace Data.DataLoot
         [SerializeField, JsonProperty]
         private int _amount;
 
+        [JsonConstructor]
         public Loot(LootType type, int amount)
         {
             _type = type;
             Amount = amount;
+        }
+
+        public Loot(LootType type)
+        {
+            _type = type;
+            Amount = 1;
         }
 
         public LootType Type => _type;

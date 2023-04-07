@@ -12,6 +12,8 @@ namespace Logic.Spots
 
         public Loot RemainingRequiredLoot { get; private set; }
 
+        public Vector3 LootAcceptancePoint => _lootAcceptancePoint.position;
+
         private void Awake()
         {
             Assert.IsFalse(_totalRequiredLoot.Type == LootType.None);

@@ -446,6 +446,11 @@ PrefabInstance:
       objectReference: {fileID: 100000, guid: 0226e8aa08ca38644a9e924ae4bd6043, type: 3}
     - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
         type: 3}
+      propertyPath: _lootDropPerMine._type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316007228384657308, guid: b4814752a65b765438a4d43aba3f673e,
+        type: 3}
       propertyPath: _lootDropPerMine.Amount
       value: 2
       objectReference: {fileID: 0}

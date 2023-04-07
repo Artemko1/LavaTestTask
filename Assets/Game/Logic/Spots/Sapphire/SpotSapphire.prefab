@@ -90,10 +90,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
+        type: 3}
+      propertyPath: _totalRequiredLoot._type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5648697378742929974, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
         type: 3}
       propertyPath: m_Name
-      value: SpotMetal
+      value: SpotSapphire
       objectReference: {fileID: 0}
     - target: {fileID: 7980575755197154410, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
         type: 3}
