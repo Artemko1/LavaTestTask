@@ -9,22 +9,26 @@ using UnityEngine.Assertions;
 
 namespace Logic.Spots
 {
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider), typeof(DropSpawner))]
     public class SpotInterractor : MonoBehaviour
     {
         [SerializeField] private PlayerProgressProvider _playerProgressProvider;
-        [SerializeField] private LootDropPrefabsByType _lootDropPrefabsByType;
 
         [SerializeField] private CharacterMovement _characterMovement;
 
         [SerializeField] private Transform _dropTransitionSpawnPoint;
 
         [SerializeField] private float _interactionCooldown = 1;
+
         private readonly List<Spot> _nearSpots = new List<Spot>();
+        private DropSpawner _dropSpawner;
         private LootData _lootData;
 
         private float _remainingCooldown;
         private int _transfersInProgressCount;
+
+        private void Awake() =>
+            _dropSpawner = GetComponent<DropSpawner>();
 
         private void Start() =>
             _lootData = _playerProgressProvider.PlayerProgress.LootData;
@@ -58,7 +62,6 @@ namespace Logic.Spots
         {
             Spot spot = _nearSpots[0];
 
-            // if (spot.RemainingRequiredLoot.Amount <= 0) return;
             Assert.IsTrue(_transfersInProgressCount >= 0);
             if (spot.RemainingRequiredLoot.Amount <= _transfersInProgressCount) return;
 
@@ -66,21 +69,16 @@ namespace Logic.Spots
 
             if (loot == null || loot.Amount == 0) return;
 
-
-            AnimateOneLootDrop(loot, spot);
+            AnimateOneLootTransfer(loot, spot);
 
             _remainingCooldown = _interactionCooldown;
         }
 
-        private void AnimateOneLootDrop(Loot loot, Spot spot)
+        private void AnimateOneLootTransfer(Loot loot, Spot spot)
         {
             _transfersInProgressCount++;
 
-            DroppedLoot droppedLootPrefab = _lootDropPrefabsByType.GetForType(loot.Type);
-
-            DroppedLoot drop = Instantiate(droppedLootPrefab, _dropTransitionSpawnPoint.position, Random.rotation);
-            var lootPerDrop = new Loot(loot.Type);
-            drop.Init(lootPerDrop, false);
+            DroppedLoot drop = _dropSpawner.SpawnNonCollectable(loot, _dropTransitionSpawnPoint.position, Random.rotation);
 
             Vector2 randomHorizontalMagnitude = Random.insideUnitCircle * Random.Range(0.1f, 0.9f);
             Vector3 endMove = drop.transform.position + new Vector3(randomHorizontalMagnitude.x, 1, randomHorizontalMagnitude.y);
@@ -91,7 +89,7 @@ namespace Logic.Spots
                 .Join(drop.transform.DOScale(0.5f, 0.3f))
                 .OnComplete(() =>
                 {
-                    spot.Collect(lootPerDrop);
+                    spot.Collect(loot);
                     Destroy(drop.gameObject);
                     _transfersInProgressCount--;
                 })

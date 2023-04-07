@@ -14,17 +14,10 @@ namespace Data.DataLoot
         [SerializeField, JsonProperty]
         private int _amount;
 
-        [JsonConstructor]
         public Loot(LootType type, int amount)
         {
             _type = type;
             Amount = amount;
-        }
-
-        public Loot(LootType type)
-        {
-            _type = type;
-            Amount = 1;
         }
 
         public LootType Type => _type;
@@ -35,11 +28,8 @@ namespace Data.DataLoot
             set => _amount = value;
         }
 
-        public static Loot operator +(Loot a, Loot b)
-        {
-            var loot = new Loot(a.Type, a.Amount + b.Amount);
-            return loot;
-        }
+        public Loot Clone() =>
+            new Loot(_type, _amount);
 
         [NotNull]
         public Loot PickOutUpToX(int x)

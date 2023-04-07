@@ -92,6 +92,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
         type: 3}
+      propertyPath: _refinedLoot._type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
+        type: 3}
+      propertyPath: _refinedLoot._amount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
+        type: 3}
       propertyPath: _totalRequiredLoot.Type
       value: 1
       objectReference: {fileID: 0}

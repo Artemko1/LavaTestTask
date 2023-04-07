@@ -92,3 +92,4 @@ MonoBehaviour:
     type: 2}
   _delayBeforeCollection: 1
   _constantForce: {fileID: 922146147790787196}
+  _rigidbody: {fileID: 5568705226267801117}

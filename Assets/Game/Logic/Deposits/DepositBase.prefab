@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5617178589994565631}
   - component: {fileID: 8316007228384657308}
   - component: {fileID: 8593666126295032856}
+  - component: {fileID: 6405563290967503269}
   m_Layer: 12
   m_Name: DepositBase
   m_TagString: Untagged
@@ -147,3 +148,17 @@ MonoBehaviour:
   _viewBase: {fileID: 1742751354144085708}
   _dropSpawnPoint: {fileID: 8934810107666560302}
   _viewVariants: []
+--- !u!114 &6405563290967503269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648697378742929974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f6d2980044f98bc2d31fa458895a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lootDropPrefabsByType: {fileID: 11400000, guid: a2a1c75e514c3b04985873c7aba7354d,
+    type: 2}

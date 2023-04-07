@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 7980575755197154410}
   - component: {fileID: 5617178589994565631}
   - component: {fileID: 2859967731441299225}
+  - component: {fileID: 6405563290967503269}
   m_Layer: 17
   m_Name: SpotBase
   m_TagString: Untagged
@@ -126,3 +127,21 @@ MonoBehaviour:
     _type: 0
     _amount: 7
   _lootAcceptancePoint: {fileID: 8934810107666560302}
+  _refinedLoot:
+    _type: 0
+    _amount: 0
+  _refineTotalTime: 4
+--- !u!114 &6405563290967503269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648697378742929974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f6d2980044f98bc2d31fa458895a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lootDropPrefabsByType: {fileID: 11400000, guid: a2a1c75e514c3b04985873c7aba7354d,
+    type: 2}

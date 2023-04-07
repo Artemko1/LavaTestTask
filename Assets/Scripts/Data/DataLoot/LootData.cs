@@ -12,37 +12,34 @@ namespace Data.DataLoot
         public event Action<LootUpdatedArgs> Collected;
         public event Action<LootUpdatedArgs> Subtracted;
 
+        public IEnumerable<Loot> GetAllLoot() => _loot.Values;
+
         public void Collect(Loot loot)
         {
             if (_loot.ContainsKey(loot.Type))
             {
-                _loot[loot.Type] += loot;
+                _loot[loot.Type].Amount += loot.Amount;
             }
             else
             {
-                _loot[loot.Type] = loot;
+                _loot[loot.Type] = loot.Clone();
             }
 
             Collected?.Invoke(new LootUpdatedArgs(loot.Type, _loot[loot.Type].Amount));
         }
 
         public Loot TrySubtractOne(LootType type)
-            => TrySubtract(type, 1);
-
-        public Loot TrySubtract(LootType type, int desiredAmount) // todo make one param Loot
         {
-            if (!_loot.ContainsKey(type))
+            if (!_loot.ContainsKey(type) || _loot[type].Amount <= 0)
             {
                 return null;
             }
 
-            Loot loot = _loot[type].PickOutUpToX(desiredAmount);
+            Loot loot = _loot[type].PickOutUpToX(1);
 
             Subtracted?.Invoke(new LootUpdatedArgs(loot.Type, _loot[loot.Type].Amount));
             return loot;
         }
-
-        public IEnumerable<Loot> GetAllLoot() => _loot.Values;
     }
 
     public class LootUpdatedArgs : EventArgs

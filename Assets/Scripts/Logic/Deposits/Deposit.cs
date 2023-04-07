@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 
 namespace Logic.Deposits
 {
+    [SelectionBase]
     public class Deposit : MonoBehaviour
     {
         [SerializeField] private DepositView _depositView;

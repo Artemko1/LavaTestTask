@@ -6,12 +6,17 @@ using UnityEngine;
 
 namespace Logic.Deposits
 {
+    [RequireComponent(typeof(DropSpawner))]
     public class DepositView : MonoBehaviour
     {
-        [SerializeField] private LootDropPrefabsByType _lootDropPrefabsByType;
         [SerializeField] private GameObject _viewBase;
         [SerializeField] private Transform _dropSpawnPoint;
         [SerializeField] private List<GameObject> _viewVariants;
+
+        private DropSpawner _dropSpawner;
+
+        private void Awake() =>
+            _dropSpawner = GetComponent<DropSpawner>();
 
         private void Start()
         {
@@ -32,18 +37,9 @@ namespace Logic.Deposits
 
         public void DropLoot(Loot loot)
         {
-            DroppedLoot droppedLootPrefab = _lootDropPrefabsByType.GetForType(loot.Type);
-
             for (var i = 0; i < loot.Amount; i++)
             {
-                DroppedLoot drop = Instantiate(droppedLootPrefab, _dropSpawnPoint.position, Random.rotation);
-                drop.Init(new Loot(loot.Type, 1), true);
-
-                Vector2 randomHorizontalMagnitude = Random.insideUnitCircle * Random.Range(0.75f, 1.25f);
-                float verticalMagnitude = Random.Range(4f, 5f);
-
-                var rb = drop.GetComponent<Rigidbody>();
-                rb.AddForce(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y, ForceMode.VelocityChange);
+                _dropSpawner.SpawnCollectableWithBurst(new Loot(loot.Type, 1), _dropSpawnPoint.position, Random.rotation);
             }
         }
 

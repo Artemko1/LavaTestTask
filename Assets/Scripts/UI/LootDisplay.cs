@@ -32,7 +32,7 @@ namespace UI
         {
             foreach (Loot lootValue in _lootData.GetAllLoot())
             {
-                if (lootValue.Amount <= 0) return;
+                if (lootValue.Amount <= 0) continue;
 
                 LootRowView lootRow = CreateLootRowView(lootValue.Type);
                 lootRow.SetText(lootValue.Amount.ToString());

@@ -14,6 +14,10 @@ namespace Logic.Drop
         [SerializeField] private float _delayBeforeCollection = 1f;
 
         [SerializeField] private ConstantForce _constantForce;
+
+        [SerializeField] private Rigidbody _rigidbody;
+
+
         private bool _becomeCollectableOverTime;
 
         private bool _isCollected;
@@ -48,6 +52,9 @@ namespace Logic.Drop
                 _constantForce.enabled = false;
             }
         }
+
+        public void AddRigidbodyForce(Vector3 force) =>
+            _rigidbody.AddForce(force, ForceMode.VelocityChange);
 
         public void Collect(Vector3 collectorPosition)
         {

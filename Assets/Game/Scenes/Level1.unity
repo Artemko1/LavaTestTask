@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 9216064754046737155, guid: f9f9d9306b4187b419d33cf92b0234fc,
         type: 3}
       propertyPath: m_Name
-      value: SpotBase Variant
+      value: SpotTopaz
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f9d9306b4187b419d33cf92b0234fc, type: 3}
