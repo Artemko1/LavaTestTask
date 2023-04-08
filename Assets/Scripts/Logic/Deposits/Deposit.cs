@@ -1,4 +1,3 @@
-using Data.DataLoot;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,28 +7,23 @@ namespace Logic.Deposits
     public class Deposit : MonoBehaviour
     {
         [SerializeField] private DepositView _depositView;
+        [SerializeField] private DepositSettings _settings;
 
-        [SerializeField] private int _maxResource = 3;
-
-        [SerializeField] private Loot _lootDropPerMine;
-
-        [SerializeField] private float _miningCooldown = 2f;
-
-        [SerializeField] private float _restorationTime = 5;
-
-        private int _remainingResource;
+        private int _remainingMining;
 
         private float _remainingRestorationTime;
 
 
-        public float MiningCooldown => _miningCooldown;
+        public float MiningCooldown => _settings.MiningCooldown;
 
-        private bool IsMinedOut => _remainingResource <= 0;
+        private bool IsMinedOut => _remainingMining <= 0;
 
         private void Awake()
         {
             ResetRestorationTimer();
-            _remainingResource = _maxResource;
+            _remainingMining = _settings.MaxMining;
+
+            Assert.IsNotNull(_settings);
         }
 
         private void Update()
@@ -50,30 +44,30 @@ namespace Logic.Deposits
                 return;
             }
 
-            _remainingResource--;
-            _depositView.ChangeView(_remainingResource);
+            _remainingMining--;
+            _depositView.ChangeView(_remainingMining);
 
             _depositView.PlayMiningAnimation();
-            _depositView.DropLoot(_lootDropPerMine);
+            _depositView.DropLoot(_settings.LootDropPerMine);
 
             ResetRestorationTimer();
         }
 
         private void ResetRestorationTimer() =>
-            _remainingRestorationTime = _restorationTime;
+            _remainingRestorationTime = _settings.RestorationTime;
 
         private bool IsFull() =>
-            _remainingResource >= _maxResource;
+            _remainingMining >= _settings.MaxMining;
 
         private void TickRestoration()
         {
             _remainingRestorationTime -= Time.deltaTime;
             if (_remainingRestorationTime > 0) return;
 
-            Assert.AreNotEqual(_remainingResource, _maxResource);
+            Assert.AreNotEqual(_remainingMining, _settings.MaxMining);
 
-            _remainingResource++;
-            _depositView.ChangeView(_remainingResource);
+            _remainingMining++;
+            _depositView.ChangeView(_remainingMining);
             ResetRestorationTimer();
         }
     }
