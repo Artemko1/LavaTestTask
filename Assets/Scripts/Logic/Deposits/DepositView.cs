@@ -39,7 +39,7 @@ namespace Logic.Deposits
         {
             for (var i = 0; i < loot.Amount; i++)
             {
-                _dropSpawner.SpawnCollectableWithBurst(new Loot(loot.Type, 1), _dropSpawnPoint.position, Random.rotation);
+                _dropSpawner.SpawnWithBurst(new Loot(loot.Type, 1), _dropSpawnPoint.position);
             }
         }
 

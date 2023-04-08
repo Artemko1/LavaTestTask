@@ -1,3 +1,4 @@
+using Data.DataLoot;
 using UnityEngine;
 
 namespace Data
@@ -6,5 +7,6 @@ namespace Data
     public class PlayerProgressProvider : ScriptableObject
     {
         public PlayerProgress PlayerProgress { get; set; }
+        public LootData LootData => PlayerProgress.LootData;
     }
 }

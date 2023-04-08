@@ -57,7 +57,7 @@ namespace Logic.Spots
             {
                 yield return new WaitForSeconds(oneStepTime);
 
-                _dropSpawner.SpawnCollectableWithBurst(new Loot(_refinedLoot.Type, 1), _lootAcceptancePoint.position, Random.rotation);
+                _dropSpawner.SpawnWithBurst(new Loot(_refinedLoot.Type, 1), _lootAcceptancePoint.position);
             }
 
             yield return new WaitForSeconds(oneStepTime);
