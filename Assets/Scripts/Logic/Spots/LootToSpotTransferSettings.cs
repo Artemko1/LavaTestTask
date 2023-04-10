@@ -12,7 +12,7 @@ namespace Logic.Spots
         [field: SerializeField] public float ScaleEndValue { get; private set; } = 0.5f;
         [field: SerializeField] public float HorizontalMagnitudeMin { get; private set; } = 0f;
         [field: SerializeField] public float HorizontalMagnitudeMax { get; private set; } = 1f;
-        [field: SerializeField] public float FloatingDistance { get; private set; } = 1f;
+        [field: SerializeField] public float FloatingUpDistance { get; private set; } = 1f;
         [field: SerializeField] public Ease SequenceEase { get; private set; } = Ease.Linear;
     }
 }

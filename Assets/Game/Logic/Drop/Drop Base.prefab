@@ -88,8 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d0916be8ac4fb09f803ab88af42abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerProgressProvider: {fileID: 11400000, guid: d8e8ead5e55b8f3459c8215069a00be5,
+  _droppedLootSettings: {fileID: 11400000, guid: 4da244c08f09d9e45b15ef3c212529bd,
     type: 2}
-  _delayBeforeCollection: 1
   _constantForce: {fileID: 922146147790787196}
   _rigidbody: {fileID: 5568705226267801117}

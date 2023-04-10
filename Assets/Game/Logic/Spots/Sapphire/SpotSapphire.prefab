@@ -92,6 +92,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
         type: 3}
+      propertyPath: _settings
+      value: 
+      objectReference: {fileID: 11400000, guid: f6b7a8fa667237844b6b304a34c4f6f6,
+        type: 2}
+    - target: {fileID: 2859967731441299225, guid: f7a5ea0ecce66744ab193cfae1acc6d4,
+        type: 3}
       propertyPath: _refinedLoot._type
       value: 6
       objectReference: {fileID: 0}

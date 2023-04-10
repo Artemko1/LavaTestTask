@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data;
 using Data.DataLoot;
@@ -28,6 +29,12 @@ namespace Logic.Spots
             Assert.IsNotNull(_playerProgressProvider);
             Assert.IsNotNull(_characterMovement);
             Assert.IsNotNull(_settings);
+        }
+
+        private void OnEnable()
+        {
+            var capsule = GetComponent<CapsuleCollider>();
+            capsule.radius = _settings.InteractionRadius;
         }
 
         private void Update()
@@ -68,7 +75,7 @@ namespace Logic.Spots
 
             AnimateOneLootTransfer(loot, spot);
 
-            _remainingCooldown = _settings.InteractionCooldown;
+            ResetCooldown();
         }
 
         private void AnimateOneLootTransfer(Loot loot, Spot spot)
@@ -76,5 +83,8 @@ namespace Logic.Spots
             _transfersInProgressCount++;
             _lootToSpotTransferer.Transfer(loot, spot, () => _transfersInProgressCount--);
         }
+
+        private void ResetCooldown() =>
+            _remainingCooldown = _settings.InteractionCooldown;
     }
 }

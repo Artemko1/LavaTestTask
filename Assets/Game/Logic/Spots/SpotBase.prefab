@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lootDropPrefabsByType: {fileID: 11400000, guid: a2a1c75e514c3b04985873c7aba7354d,
     type: 2}
-  _settings: {fileID: 11400000, guid: b31991a84ffb35140a68698aa027fe66, type: 2}
+  _settings: {fileID: 11400000, guid: 3c32ba3fe2b4bed439be5aa3696f3d85, type: 2}

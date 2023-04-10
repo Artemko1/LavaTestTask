@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Logic.Player;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Logic.Deposits
 
         private readonly List<Deposit> _nearDeposits = new List<Deposit>();
         private float _remainingCooldown;
+        [SerializeField] private DepositMinerSettings _settings;
 
         private void Update()
         {
@@ -20,6 +22,12 @@ namespace Logic.Deposits
             {
                 TryMine();
             }
+        }
+
+        private void OnEnable()
+        {
+            var capsule = GetComponent<CapsuleCollider>();
+            capsule.radius = _settings.MiningRadius;
         }
 
         private void OnTriggerEnter(Collider other)

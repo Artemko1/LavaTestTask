@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 namespace Logic.Player
 {
-    [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(PlayerAnimator)), RequireComponent(typeof(PlayerInput))]
+    [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(PlayerAnimator)),
+     RequireComponent(typeof(PlayerInput)), SelectionBase]
     public class CharacterMovement : MonoBehaviour
     {
         private NavMeshAgent _agent;

@@ -92,3 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectorMagnetTransform: {fileID: 4619066766375452886}
+  _playerProgressProvider: {fileID: 11400000, guid: d8e8ead5e55b8f3459c8215069a00be5,
+    type: 2}
+  _settings: {fileID: 11400000, guid: 9c32057da07f7fc46ae7892c435d59ee, type: 2}

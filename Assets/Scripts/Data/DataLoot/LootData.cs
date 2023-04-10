@@ -16,9 +16,9 @@ namespace Data.DataLoot
 
         public void Collect(Loot loot)
         {
-            if (_loot.ContainsKey(loot.Type))
+            if (_loot.TryGetValue(loot.Type, out Loot value))
             {
-                _loot[loot.Type].Amount += loot.Amount;
+                value.Amount += loot.Amount;
             }
             else
             {

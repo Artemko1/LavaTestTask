@@ -24,7 +24,8 @@ namespace Logic.Spots
             float random = Random.Range(_transferSettings.HorizontalMagnitudeMin, _transferSettings.HorizontalMagnitudeMax);
             Vector2 randomHorizMagnitude = Random.insideUnitCircle * random;
             Vector3 endMove = drop.transform.position +
-                              new Vector3(randomHorizMagnitude.x, _transferSettings.FloatingDistance, randomHorizMagnitude.y);
+                              new Vector3(randomHorizMagnitude.x, _transferSettings.FloatingUpDistance,
+                                  randomHorizMagnitude.y);
 
             DOTween.Sequence()
                 .Append(drop.transform.DOMove(endMove, _transferSettings.FloatingDuration))

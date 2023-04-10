@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b354548b9f9461fbfb415658191214a, type: 3}
   m_Name: LootToSpotTransferSettings
   m_EditorClassIdentifier: 
-  <FloatingDuration>k__BackingField: 0.3
+  <FloatingDuration>k__BackingField: 0.35
   <JumpAndScaleDuration>k__BackingField: 0.3
+  <JumpPower>k__BackingField: 1.5
+  <ScaleEndValue>k__BackingField: 0.5
+  <HorizontalMagnitudeMin>k__BackingField: 0
+  <HorizontalMagnitudeMax>k__BackingField: 1
+  <FloatingUpDistance>k__BackingField: 1
+  <SequenceEase>k__BackingField: 1
