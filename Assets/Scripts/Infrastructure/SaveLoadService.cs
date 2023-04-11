@@ -10,8 +10,8 @@ namespace Infrastructure
     public class SaveLoadService : MonoBehaviour
     {
         [SerializeField] private PlayerProgressProvider _progressService;
-        private string _persistentFolder;
 
+        private string _persistentFolder;
         private string _saveJsonFilePath;
 
         private void Awake()

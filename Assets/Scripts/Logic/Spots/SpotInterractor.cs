@@ -69,7 +69,7 @@ namespace Logic.Spots
             Assert.IsTrue(_transfersInProgressCount >= 0);
             if (spot.RemainingRequiredLoot.Amount <= _transfersInProgressCount) return;
 
-            Loot loot = _playerProgressProvider.LootData.TrySubtractOne(spot.RemainingRequiredLoot.Type);
+            Loot loot = _playerProgressProvider.PlayerProgress.LootData.TrySubtractOne(spot.RemainingRequiredLoot.Type);
 
             if (loot == null || loot.Amount == 0) return;
 

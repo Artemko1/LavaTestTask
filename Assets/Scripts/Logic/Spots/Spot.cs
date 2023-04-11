@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Data.DataLoot;
 using Logic.Drop;
@@ -16,6 +17,8 @@ namespace Logic.Spots
 
         public Loot RemainingRequiredLoot { get; private set; }
         public Vector3 LootAcceptancePoint => _lootAcceptancePoint.position;
+
+        public Action RefineStart;
 
         private void Awake()
         {
@@ -46,6 +49,8 @@ namespace Logic.Spots
 
         private IEnumerator RefineLoot()
         {
+            RefineStart?.Invoke();
+
             float oneStepTime = _settings.RefineTime / _settings.RefinedLoot.Amount;
 
             for (var i = 0; i < _settings.RefinedLoot.Amount; i++)

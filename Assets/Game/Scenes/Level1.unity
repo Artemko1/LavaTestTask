@@ -254,6 +254,12 @@ MonoBehaviour:
     type: 3}
   _playerFollowVirtualCameraPrefab: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8,
     type: 3}
+  _tutorialPrefab: {fileID: 6425859450335318514, guid: 847e44ce22b61d247946fe92b368b78b,
+    type: 3}
+  _tutorialSettings:
+    <EnableTutorial>k__BackingField: 1
+    <DepositToFarm>k__BackingField: {fileID: 1004498826}
+    <SpotToGoTo>k__BackingField: {fileID: 1848328642}
 --- !u!4 &126941371
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,6 +1074,18 @@ Transform:
   m_Father: {fileID: 713441654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004498826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5281126191715562471, guid: 33880a41750dfb34dbf6389322107824,
+    type: 3}
+  m_PrefabInstance: {fileID: 681626856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb86ca91a5f3456eb6bf137af12a3ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1301435397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1314,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bd6dc53de8dcc42a4231bc70b89fae, type: 3}
+--- !u!114 &1848328642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1599511488428539436, guid: f9f9d9306b4187b419d33cf92b0234fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 437135668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609439018f15481ca51492c168e879a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1918361011
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Data.DataLoot;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -15,6 +16,7 @@ namespace Logic.Deposits
 
 
         public float MiningCooldown => _settings.MiningCooldown;
+        public LootType LootType => _settings.LootDropPerMine.Type;
 
         private bool IsMinedOut => _remainingMining <= 0;
 

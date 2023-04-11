@@ -29,17 +29,17 @@ namespace Infrastructure
 
             SetTargetFramerate();
             InitializeServices();
-            LoadProgress();
             LoadDefaultScene();
         }
 
         private static void SetTargetFramerate() =>
             Application.targetFrameRate = 60;
 
-        private void InitializeServices() => DOTween.Init();
-
-        private void LoadProgress() =>
+        private void InitializeServices()
+        {
+            DOTween.Init();
             _saveLoadService.LoadProgress();
+        }
 
         private void LoadDefaultScene() =>
             _sceneLoader.Load(DefaultSceneName);

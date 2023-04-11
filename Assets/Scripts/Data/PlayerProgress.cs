@@ -6,6 +6,6 @@ namespace Data
     [Serializable]
     public class PlayerProgress
     {
-        public LootData LootData = new LootData();
+        public readonly LootData LootData = new LootData();
     }
 }
