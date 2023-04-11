@@ -6,9 +6,9 @@ namespace Infrastructure
     [DefaultExecutionOrder(-110), RequireComponent(typeof(SaveLoadService), typeof(SceneLoader))]
     public class GameBootstrapper : MonoBehaviour
     {
-        private const string DefaultSceneName = "Level1";
-
         private static GameBootstrapper _instance;
+
+        [SerializeField] private GameBootstrapperSettings _settings;
 
         private SaveLoadService _saveLoadService;
         private SceneLoader _sceneLoader;
@@ -42,6 +42,6 @@ namespace Infrastructure
         }
 
         private void LoadDefaultScene() =>
-            _sceneLoader.Load(DefaultSceneName);
+            _sceneLoader.Load(_settings.SceneToLoadName);
     }
 }

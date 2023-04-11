@@ -49,7 +49,7 @@ namespace Logic.Drop
         public void AddRigidbodyForce(Vector3 force) =>
             _rigidbody.AddForce(force, ForceMode.VelocityChange);
 
-        public void MarkCollected() => 
+        public void MarkCollected() =>
             _isCollected = true;
     }
 }

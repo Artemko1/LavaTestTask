@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Logic.Player;
 using UnityEngine;
@@ -9,10 +8,10 @@ namespace Logic.Deposits
     public class DepositMiner : MonoBehaviour
     {
         [SerializeField] private CharacterMovement _characterMovement;
+        [SerializeField] private DepositMinerSettings _settings;
 
         private readonly List<Deposit> _nearDeposits = new List<Deposit>();
         private float _remainingCooldown;
-        [SerializeField] private DepositMinerSettings _settings;
 
         private void Update()
         {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Data;
 using Data.DataLoot;
@@ -31,12 +30,6 @@ namespace Logic.Spots
             Assert.IsNotNull(_settings);
         }
 
-        private void OnEnable()
-        {
-            var capsule = GetComponent<CapsuleCollider>();
-            capsule.radius = _settings.InteractionRadius;
-        }
-
         private void Update()
         {
             _remainingCooldown -= Time.deltaTime;
@@ -44,6 +37,12 @@ namespace Logic.Spots
             {
                 TryGiveLootToSpot();
             }
+        }
+
+        private void OnEnable()
+        {
+            var capsule = GetComponent<CapsuleCollider>();
+            capsule.radius = _settings.InteractionRadius;
         }
 
         private void OnTriggerEnter(Collider other)

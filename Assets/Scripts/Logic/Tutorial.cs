@@ -42,6 +42,9 @@ namespace Logic
             _settings.SpotToGoTo.RefineStart -= OnSpotRefineStart;
         }
 
+        public void Init(Settings settings) =>
+            _settings = settings;
+
         private void OnSpotRefineStart()
         {
             SetTrackTarget(null);
@@ -55,9 +58,6 @@ namespace Logic
             float angle = Vector3.SignedAngle(dir, Vector3.forward, Vector3.up);
             _arrowImageParent.eulerAngles = new Vector3(90, 0, angle);
         }
-
-        public void Init(Settings settings) =>
-            _settings = settings;
 
         private void OnLootCollected(LootUpdatedArgs args)
         {

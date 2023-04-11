@@ -15,10 +15,10 @@ namespace Logic.Spots
 
         private DropSpawner _dropSpawner;
 
+        public Action RefineStart;
+
         public Loot RemainingRequiredLoot { get; private set; }
         public Vector3 LootAcceptancePoint => _lootAcceptancePoint.position;
-
-        public Action RefineStart;
 
         private void Awake()
         {

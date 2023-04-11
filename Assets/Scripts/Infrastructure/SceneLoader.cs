@@ -15,7 +15,6 @@ namespace Infrastructure
             string activeScene = SceneManager.GetActiveScene().name;
             if (activeScene == sceneName)
             {
-                Debug.Log($"Scene {sceneName} is already loaded");
                 onLoaded?.Invoke();
                 yield break;
             }

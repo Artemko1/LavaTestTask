@@ -1,7 +1,6 @@
 using Data.DataLoot;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Random = UnityEngine.Random;
 
 namespace Logic.Drop
 {
@@ -24,10 +23,12 @@ namespace Logic.Drop
             drop.Init(loot, true);
 
             Vector2 randomHorizontalMagnitude =
-                Random.insideUnitCircle * Random.Range(_settings.HorizontalMagnitudeMin, _settings.HorizontalMagnitudeMax);
+                Random.insideUnitCircle *
+                Random.Range(_settings.HorizontalMagnitudeMin, _settings.HorizontalMagnitudeMax);
             float verticalMagnitude = Random.Range(_settings.VerticalMagnitudeMin, _settings.VerticalMagnitudeMax);
 
-            drop.AddRigidbodyForce(new Vector3(randomHorizontalMagnitude.x, verticalMagnitude, randomHorizontalMagnitude.y));
+            drop.AddRigidbodyForce(new Vector3(randomHorizontalMagnitude.x, verticalMagnitude,
+                randomHorizontalMagnitude.y));
         }
     }
 }

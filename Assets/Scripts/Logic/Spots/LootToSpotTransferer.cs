@@ -21,7 +21,8 @@ namespace Logic.Spots
             drop.Init(loot, false);
 
 
-            float random = Random.Range(_transferSettings.HorizontalMagnitudeMin, _transferSettings.HorizontalMagnitudeMax);
+            float random = Random.Range(_transferSettings.HorizontalMagnitudeMin,
+                _transferSettings.HorizontalMagnitudeMax);
             Vector2 randomHorizMagnitude = Random.insideUnitCircle * random;
             Vector3 endMove = drop.transform.position +
                               new Vector3(randomHorizMagnitude.x, _transferSettings.FloatingUpDistance,
